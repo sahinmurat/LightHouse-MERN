@@ -3,6 +3,7 @@ const app = express();
 // const router = express.Router();
 const connectDB = require('./models/connectDB')
 const router= require('./routers/router');
+const cors = require('cors')
 
 require("dotenv").config();
 
@@ -13,7 +14,7 @@ if (process.env.NODE_ENV === "production") {
       res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
     });
   }
-
+app.use(cors());
 app.use(express.json());
 app.use('/', router);
 
